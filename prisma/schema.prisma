@@ -1,0 +1,177 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String?
+  name      String?
+  role      String   @default("ADMIN")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Profile {
+  id                   String   @id @default(cuid())
+  nameRu               String?
+  nameEn               String?
+  roleRu               String?
+  roleEn               String?
+  positioningStatementRu String?
+  positioningStatementEn String?
+  bioRu                String?  @db.Text
+  bioEn                String?  @db.Text
+  philosophyRu         String?  @db.Text
+  philosophyEn         String?  @db.Text
+  currentFocusRu       String?  @db.Text
+  currentFocusEn       String?  @db.Text
+  interestsRu          String?  @db.Text
+  interestsEn          String?  @db.Text
+  avatar               String?
+  heroImage            String?
+  seoTitle             String?
+  seoDescription       String?
+  seoOgImage           String?
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+}
+
+model Education {
+  id           String   @id @default(cuid())
+  institutionRu String?
+  institutionEn String?
+  degreeRu      String?
+  degreeEn      String?
+  fieldRu       String?
+  fieldEn       String?
+  startDate    DateTime
+  endDate      DateTime?
+  isCurrent   Boolean  @default(false)
+  descriptionRu String?  @db.Text
+  descriptionEn String?  @db.Text
+  order        Int      @default(0)
+  isVisible    Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Experience {
+  id          String   @id @default(cuid())
+  companyRu   String?
+  companyEn   String?
+  roleRu      String?
+  roleEn      String?
+  locationRu  String?
+  locationEn  String?
+  startDate   DateTime
+  endDate     DateTime?
+  isCurrent   Boolean  @default(false)
+  descriptionRu String?  @db.Text
+  descriptionEn String?  @db.Text
+  highlightsRu String[] @default([])
+  highlightsEn String[] @default([])
+  order       Int      @default(0)
+  isVisible   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Project {
+  id              String   @id @default(cuid())
+  titleRu         String?
+  titleEn         String?
+  slug            String   @unique
+  descriptionRu   String?  @db.Text
+  descriptionEn   String?  @db.Text
+  longDescriptionRu String?  @db.Text
+  longDescriptionEn String?  @db.Text
+  stack           String[] @default([])
+  tagsRu          String[] @default([])
+  tagsEn          String[] @default([])
+  imageUrl        String?
+  demoUrl         String?
+  repoUrl         String?
+  status          String   @default("LIVE")
+  featured        Boolean  @default(false)
+  order           Int      @default(0)
+  isVisible       Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model Skill {
+  id          String   @id @default(cuid())
+  nameRu      String?
+  nameEn      String?
+  category    String
+  proficiency Int?
+  order       Int      @default(0)
+  isVisible   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Achievement {
+  id          String   @id @default(cuid())
+  titleRu      String?
+  titleEn      String?
+  descriptionRu String?  @db.Text
+  descriptionEn String?  @db.Text
+  date        DateTime
+  type        String
+  url         String?
+  order       Int      @default(0)
+  isVisible   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model SocialLink {
+  id        String   @id @default(cuid())
+  platform  String
+  url       String
+  labelRu   String?
+  labelEn   String?
+  isVisible Boolean  @default(true)
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model SiteSettings {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     String   @db.Text
+  updatedAt DateTime @updatedAt
+}
+
+model BlogPost {
+  id          String    @id @default(cuid())
+  title       String
+  slug        String    @unique
+  content     String    @db.Text
+  excerpt     String?
+  coverImage  String?
+  published   Boolean   @default(false)
+  publishedAt DateTime?
+  order       Int       @default(0)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Language {
+  id         String   @id @default(cuid())
+  nameRu      String?
+  nameEn      String?
+  proficiency String
+  order      Int      @default(0)
+  isVisible  Boolean  @default(true)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
