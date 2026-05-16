@@ -25,8 +25,12 @@ export async function PUT(req: NextRequest) {
         positioningStatementEn: data.positioningStatementEn || '',
         bioRu: data.bioRu || '',
         bioEn: data.bioEn || '',
+        philosophyRu: data.philosophyRu || '',
+        philosophyEn: data.philosophyEn || '',
         currentFocusRu: data.currentFocusRu || '',
         currentFocusEn: data.currentFocusEn || '',
+        interestsRu: data.interestsRu || '',
+        interestsEn: data.interestsEn || '',
       },
     })
     return NextResponse.json(updated)
@@ -41,8 +45,12 @@ export async function PUT(req: NextRequest) {
         positioningStatementEn: data.positioningStatementEn || '',
         bioRu: data.bioRu || '',
         bioEn: data.bioEn || '',
+        philosophyRu: data.philosophyRu || '',
+        philosophyEn: data.philosophyEn || '',
         currentFocusRu: data.currentFocusRu || '',
         currentFocusEn: data.currentFocusEn || '',
+        interestsRu: data.interestsRu || '',
+        interestsEn: data.interestsEn || '',
       },
     })
     return NextResponse.json(created)

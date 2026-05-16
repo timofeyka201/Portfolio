@@ -39,8 +39,12 @@ export default function AdminDashboard() {
     positioningStatementEn: '',
     bioRu: '',
     bioEn: '',
+    philosophyRu: '',
+    philosophyEn: '',
     currentFocusRu: '',
     currentFocusEn: '',
+    interestsRu: '',
+    interestsEn: '',
   })
 
   useEffect(() => {
@@ -66,8 +70,12 @@ export default function AdminDashboard() {
           positioningStatementEn: json.profile.positioningStatementEn || '',
           bioRu: json.profile.bioRu || '',
           bioEn: json.profile.bioEn || '',
+          philosophyRu: json.profile.philosophyRu || '',
+          philosophyEn: json.profile.philosophyEn || '',
           currentFocusRu: json.profile.currentFocusRu || '',
           currentFocusEn: json.profile.currentFocusEn || '',
+          interestsRu: json.profile.interestsRu || '',
+          interestsEn: json.profile.interestsEn || '',
         })
       }
     } catch (error) {
@@ -255,6 +263,46 @@ export default function AdminDashboard() {
                       <textarea
                         value={profileForm.currentFocusEn}
                         onChange={(e) => { setProfileForm({ ...profileForm, currentFocusEn: e.target.value }); setProfileSaved(false) }}
+                        rows={3}
+                        className="w-full px-4 py-2 bg-background-secondary border border-border rounded-lg"
+                      />
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm text-foreground-muted mb-1">Philosophy (RU)</label>
+                      <textarea
+                        value={profileForm.philosophyRu}
+                        onChange={(e) => { setProfileForm({ ...profileForm, philosophyRu: e.target.value }); setProfileSaved(false) }}
+                        rows={3}
+                        className="w-full px-4 py-2 bg-background-secondary border border-border rounded-lg"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm text-foreground-muted mb-1">Philosophy (EN)</label>
+                      <textarea
+                        value={profileForm.philosophyEn}
+                        onChange={(e) => { setProfileForm({ ...profileForm, philosophyEn: e.target.value }); setProfileSaved(false) }}
+                        rows={3}
+                        className="w-full px-4 py-2 bg-background-secondary border border-border rounded-lg"
+                      />
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm text-foreground-muted mb-1">Interests (RU)</label>
+                      <textarea
+                        value={profileForm.interestsRu}
+                        onChange={(e) => { setProfileForm({ ...profileForm, interestsRu: e.target.value }); setProfileSaved(false) }}
+                        rows={3}
+                        className="w-full px-4 py-2 bg-background-secondary border border-border rounded-lg"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm text-foreground-muted mb-1">Interests (EN)</label>
+                      <textarea
+                        value={profileForm.interestsEn}
+                        onChange={(e) => { setProfileForm({ ...profileForm, interestsEn: e.target.value }); setProfileSaved(false) }}
                         rows={3}
                         className="w-full px-4 py-2 bg-background-secondary border border-border rounded-lg"
                       />
