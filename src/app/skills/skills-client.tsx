@@ -3,7 +3,7 @@
 import { useLang } from "@/components/lang-context"
 
 export default function SkillsClient({ skills }: { skills: any[] }) {
-  const { t } = useLang()
+  const { t, lang } = useLang()
 
   const skillsByCategory = skills.reduce((acc, skill) => {
     if (!acc[skill.category]) acc[skill.category] = []
@@ -33,7 +33,7 @@ export default function SkillsClient({ skills }: { skills: any[] }) {
                     key={skill.id}
                     className="px-3 py-1.5 bg-background-secondary border border-border-subtle rounded-md text-sm"
                   >
-                    {skill.name}
+                    {lang === 'ru' ? (skill.nameRu || skill.nameEn) : (skill.nameEn || skill.nameRu)}
                   </span>
                 ))}
               </div>

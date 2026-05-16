@@ -3,7 +3,7 @@
 import { useLang } from "@/components/lang-context"
 
 export default function ExperienceClient({ experiences }: { experiences: any[] }) {
-  const { t } = useLang()
+  const { t, lang } = useLang()
 
   return (
     <div className="min-h-screen py-24">
@@ -23,18 +23,26 @@ export default function ExperienceClient({ experiences }: { experiences: any[] }
 
                 <div className="space-y-3">
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-                    <h3 className="text-lg font-semibold">{exp.role}</h3>
+                    <h3 className="text-lg font-semibold">
+                      {lang === 'ru' ? (exp.roleRu || exp.roleEn) : (exp.roleEn || exp.roleRu)}
+                    </h3>
                     <span className="text-sm text-foreground-muted">
                       {new Date(exp.startDate).getFullYear()} - {exp.isCurrent ? t("experience.present") : exp.endDate ? new Date(exp.endDate).getFullYear() : ''}
                     </span>
                   </div>
 
-                  <p className="text-foreground-muted font-medium">{exp.company}</p>
-                  {exp.description && <p className="text-foreground-muted">{exp.description}</p>}
+                  <p className="text-foreground-muted font-medium">
+                    {lang === 'ru' ? (exp.companyRu || exp.companyEn) : (exp.companyEn || exp.companyRu)}
+                  </p>
+                  {(lang === 'ru' ? (exp.descriptionRu || exp.descriptionEn) : (exp.descriptionEn || exp.descriptionRu)) && (
+                    <p className="text-foreground-muted">
+                      {lang === 'ru' ? (exp.descriptionRu || exp.descriptionEn) : (exp.descriptionEn || exp.descriptionRu)}
+                    </p>
+                  )}
 
-                  {exp.highlights.length > 0 && (
+                  {(lang === 'ru' ? (exp.highlightsRu || []) : (exp.highlightsEn || [])).length > 0 && (
                     <ul className="list-disc list-inside space-y-1 text-sm text-foreground-muted">
-                      {exp.highlights.map((highlight: string, i: number) => (
+                      {(lang === 'ru' ? (exp.highlightsRu || []) : (exp.highlightsEn || [])).map((highlight: string, i: number) => (
                         <li key={i}>{highlight}</li>
                       ))}
                     </ul>

@@ -4,7 +4,7 @@ import Link from "next/link"
 import { useLang } from "@/components/lang-context"
 
 export default function ProjectsClient({ projects }: { projects: any[] }) {
-  const { t } = useLang()
+  const { t, lang } = useLang()
 
   return (
     <div className="min-h-screen py-24">
@@ -22,7 +22,7 @@ export default function ProjectsClient({ projects }: { projects: any[] }) {
             >
               <div className="flex items-start justify-between mb-4">
                 <h3 className="text-lg font-semibold group-hover:text-accent transition-colors">
-                  {project.title}
+                  {lang === 'ru' ? (project.titleRu || project.titleEn) : (project.titleEn || project.titleRu)}
                 </h3>
                 <span className={`text-xs px-2 py-1 rounded ${
                   project.status === 'LIVE' 
@@ -34,11 +34,11 @@ export default function ProjectsClient({ projects }: { projects: any[] }) {
               </div>
 
               <p className="text-sm text-foreground-muted mb-4">
-                {project.description}
+                {lang === 'ru' ? (project.descriptionRu || project.descriptionEn) : (project.descriptionEn || project.descriptionRu)}
               </p>
 
               <div className="flex flex-wrap gap-2 mb-4">
-                {project.tags.map((tag: string) => (
+                {(lang === 'ru' ? (project.tagsRu || []) : (project.tagsEn || [])).map((tag: string) => (
                   <span
                     key={tag}
                     className="text-xs px-2 py-1 rounded bg-background text-foreground-muted"
