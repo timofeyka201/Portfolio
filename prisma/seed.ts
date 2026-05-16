@@ -30,13 +30,20 @@ async function main() {
     update: {},
     create: {
       id: 'default',
-      name: 'Тимофей Морозов',
-      role: 'Product Manager, AI Enthusiast, Vibecoder',
-      positioningStatement: 'Product Manager building AI-native products and rapid prototypes.',
-      bio: 'I\'m a Product Manager with a passion for building AI-native products and rapid prototypes. Based in Moscow, I\'ve been working on the intersection of technology, design, and user needs.',
-      philosophy: 'My approach to product management is rooted in deep user understanding. I believe in Jobs-to-be-Done (JTBD) methodology, data-driven decision making, and iterative development.',
-      currentFocus: 'Currently focused on AI-powered products, vibecoding prototypes, and exploring how LLMs can transform product workflows.',
-      interests: 'AI/ML, startup ecosystems, product development, UX research, automation, and building tools that make life easier.',
+      nameRu: 'Тимофей Морозов',
+      nameEn: 'Timofey Morozov',
+      roleRu: 'Product Manager, AI энтузиаст, Вибекодер',
+      roleEn: 'Product Manager, AI Enthusiast, Vibecoder',
+      positioningStatementRu: 'Product Manager, создающий AI-native продукты и быстрые прототипы.',
+      positioningStatementEn: 'Product Manager building AI-native products and rapid prototypes.',
+      bioRu: 'Я Product Manager с passion к созданию AI-native продуктов и быстрых прототипов. Базируюсь в Москве, работаю на стыке технологий, дизайна и потребностей пользователей.',
+      bioEn: "I'm a Product Manager with a passion for building AI-native products and rapid prototypes. Based in Moscow, I've been working on the intersection of technology, design, and user needs.",
+      philosophyRu: 'Мой подход к продакт-менеджменту основан на глубоком понимании пользователей. Я верю в методологию Jobs-to-be-Done (JTBD), data-driven решения и итеративную разработку.',
+      philosophyEn: 'My approach to product management is rooted in deep user understanding. I believe in Jobs-to-be-Done (JTBD) methodology, data-driven decision making, and iterative development.',
+      currentFocusRu: 'Сейчас фокусируюсь на AI-продуктах, вибекодинг прототипов и изучении того, как LLMs могут трансформировать продуктовые процессы.',
+      currentFocusEn: 'Currently focused on AI-powered products, vibecoding prototypes, and exploring how LLMs can transform product workflows.',
+      interestsRu: 'AI/ML, стартап-экосистемы, продакт-разработка, UX-исследования, автоматизация и создание инструментов, упрощающих жизнь.',
+      interestsEn: 'AI/ML, startup ecosystems, product development, UX research, automation, and building tools that make life easier.',
     },
   })
 
@@ -48,9 +55,12 @@ async function main() {
     update: {},
     create: {
       id: 'hse',
-      institution: 'Higher School of Economics (HSE)',
-      degree: 'Bachelor',
-      field: 'Economics and Data Analysis',
+      institutionRu: 'Высшая школа экономики (ВШЭ)',
+      institutionEn: 'Higher School of Economics (HSE)',
+      degreeRu: 'Бакалавр',
+      degreeEn: 'Bachelor',
+      fieldRu: 'Экономика и анализ данных',
+      fieldEn: 'Economics and Data Analysis',
       startDate: new Date('2022-09-01'),
       isCurrent: true,
       order: 0,
@@ -61,8 +71,8 @@ async function main() {
 
   // Create languages
   const languages = [
-    { id: 'russian', name: 'Russian', proficiency: 'Native', order: 0 },
-    { id: 'english', name: 'English', proficiency: 'B2', order: 1 },
+    { id: 'russian', nameRu: 'Русский', nameEn: 'Russian', proficiency: 'Native', order: 0 },
+    { id: 'english', nameRu: 'Английский', nameEn: 'English', proficiency: 'B2', order: 1 },
   ]
 
   for (const lang of languages) {
@@ -79,22 +89,30 @@ async function main() {
   const experiences = [
     {
       id: 'accelerator',
-      company: 'Startup Accelerator',
-      role: 'Participant',
+      companyRu: 'Стартап-акселератор',
+      companyEn: 'Startup Accelerator',
+      roleRu: 'Участник',
+      roleEn: 'Participant',
       startDate: new Date('2024-01-01'),
       isCurrent: true,
-      description: 'Selected for a competitive startup accelerator program focused on AI products.',
-      highlights: ['Conducted JTBD interviews with 50+ potential users', 'Built rapid prototypes using AI tools', 'Validated product ideas through user testing'],
+      descriptionRu: 'Отобран в конкурентную программу стартап-акселератора, сфокусированную на AI-продуктах.',
+      descriptionEn: 'Selected for a competitive startup accelerator program focused on AI products.',
+      highlightsRu: ['Провел JTBD интервью с 50+ потенциальными пользователями', 'Создал быстрые прототипы с использованием AI-инструментов', 'Валидировал продуктовые идеи через user testing'],
+      highlightsEn: ['Conducted JTBD interviews with 50+ potential users', 'Built rapid prototypes using AI tools', 'Validated product ideas through user testing'],
       order: 0,
     },
     {
       id: 'product-work',
-      company: 'Various Projects',
-      role: 'Product Manager',
+      companyRu: 'Различные проекты',
+      companyEn: 'Various Projects',
+      roleRu: 'Product Manager',
+      roleEn: 'Product Manager',
       startDate: new Date('2023-01-01'),
       isCurrent: true,
-      description: 'Working on various product initiatives including Termeet and VPN Telegram bots.',
-      highlights: ['End-to-end product development', 'User research and analytics', 'Working with Jira, Confluence, Miro'],
+      descriptionRu: 'Работаю над различными продуктовыми инициативами, включая Termeet и VPN Telegram боты.',
+      descriptionEn: 'Working on various product initiatives including Termeet and VPN Telegram bots.',
+      highlightsRu: ['End-to-end продуктовая разработка', 'User research и аналитика', 'Работа с Jira, Confluence, Miro'],
+      highlightsEn: ['End-to-end product development', 'User research and analytics', 'Working with Jira, Confluence, Miro'],
       order: 1,
     },
   ]
@@ -113,32 +131,41 @@ async function main() {
   const projects = [
     {
       id: 'termeet',
-      title: 'Termeet',
+      titleRu: 'Termeet',
+      titleEn: 'Termeet',
       slug: 'termeet',
-      description: 'AI-powered meeting scheduler that helps teams find the perfect time for meetings using natural language.',
+      descriptionRu: 'AI-powered планировщик встреч, который помогает командам найти идеальное время для встреч с использованием естественного языка.',
+      descriptionEn: 'AI-powered meeting scheduler that helps teams find the perfect time for meetings using natural language.',
       stack: ['AI', 'Python', 'Telegram', 'Product Management'],
-      tags: ['AI', 'Product Management', 'Python', 'Telegram'],
+      tagsRu: ['AI', 'Product Management', 'Python', 'Telegram'],
+      tagsEn: ['AI', 'Product Management', 'Python', 'Telegram'],
       status: 'LIVE',
       featured: true,
       order: 0,
     },
     {
       id: 'guardvpn',
-      title: 'GuardVPN Bot',
+      titleRu: 'GuardVPN Bot',
+      titleEn: 'GuardVPN Bot',
       slug: 'guardvpn-bot',
-      description: 'Telegram bot for VPN service management with user authentication and subscription handling.',
+      descriptionRu: 'Telegram бот для управления VPN-сервисом с аутентификацией пользователей и обработкой подписок.',
+      descriptionEn: 'Telegram bot for VPN service management with user authentication and subscription handling.',
       stack: ['Telegram Bot', 'Python', 'Product'],
-      tags: ['Telegram Bot', 'Python', 'Product'],
+      tagsRu: ['Telegram Bot', 'Python', 'Product'],
+      tagsEn: ['Telegram Bot', 'Python', 'Product'],
       status: 'LIVE',
       order: 1,
     },
     {
       id: 'vibecoding',
-      title: 'Vibecoding Projects',
+      titleRu: 'Вибекодинг проекты',
+      titleEn: 'Vibecoding Projects',
       slug: 'vibecoding',
-      description: 'Collection of rapid prototypes built with AI tools - exploring the boundaries of AI-assisted development.',
+      descriptionRu: 'Коллекция быстрых прототипов, созданных с помощью AI-инструментов - исследую границы AI-assisted разработки.',
+      descriptionEn: 'Collection of rapid prototypes built with AI tools - exploring the boundaries of AI-assisted development.',
       stack: ['AI Tools', 'Rapid Prototyping', 'Vibecoding'],
-      tags: ['AI Tools', 'Rapid Prototyping', 'Vibecoding'],
+      tagsRu: ['AI Tools', 'Rapid Prototyping', 'Vibecoding'],
+      tagsEn: ['AI Tools', 'Rapid Prototyping', 'Vibecoding'],
       status: 'LIVE',
       order: 2,
     },
@@ -154,24 +181,64 @@ async function main() {
 
   console.log('Created projects')
 
-  // Create skills - without duplicates
-  const skillCategories: Record<string, string[]> = {
-    Product: ['Product Strategy', 'Roadmapping', 'User Research', 'JTBD', 'Stakeholder Management', 'Agile'],
-    AI: ['LLMs', 'GitHub Copilot', 'AI Tools', 'ChatGPT', 'Prompt Engineering', 'Vibecoding'],
-    Analytics: ['SQL', 'Analytics', 'Data Analysis', 'User Analytics', 'Metrics', 'A/B Testing'],
-    Technical: ['Python', 'Prototyping', 'Basic Development', 'API Design', 'Technical Writing'],
-    Research: ['JTBD Interviews', 'Surveys', 'Usability Testing', 'Customer Discovery'],
-    Tools: ['Figma', 'Jira', 'Confluence', 'Miro', 'Notion', 'Linear'],
+  // Create skills
+  const skillCategories: Record<string, { ru: string; en: string }[]> = {
+    Product: [
+      { ru: 'Product Strategy', en: 'Product Strategy' },
+      { ru: 'Roadmapping', en: 'Roadmapping' },
+      { ru: 'User Research', en: 'User Research' },
+      { ru: 'JTBD', en: 'JTBD' },
+      { ru: 'Stakeholder Management', en: 'Stakeholder Management' },
+      { ru: 'Agile', en: 'Agile' },
+    ],
+    AI: [
+      { ru: 'LLMs', en: 'LLMs' },
+      { ru: 'GitHub Copilot', en: 'GitHub Copilot' },
+      { ru: 'AI Tools', en: 'AI Tools' },
+      { ru: 'ChatGPT', en: 'ChatGPT' },
+      { ru: 'Prompt Engineering', en: 'Prompt Engineering' },
+      { ru: 'Vibecoding', en: 'Vibecoding' },
+    ],
+    Analytics: [
+      { ru: 'SQL', en: 'SQL' },
+      { ru: 'Analytics', en: 'Analytics' },
+      { ru: 'Data Analysis', en: 'Data Analysis' },
+      { ru: 'User Analytics', en: 'User Analytics' },
+      { ru: 'Metrics', en: 'Metrics' },
+      { ru: 'A/B Testing', en: 'A/B Testing' },
+    ],
+    Technical: [
+      { ru: 'Python', en: 'Python' },
+      { ru: 'Prototyping', en: 'Prototyping' },
+      { ru: 'Basic Development', en: 'Basic Development' },
+      { ru: 'API Design', en: 'API Design' },
+      { ru: 'Technical Writing', en: 'Technical Writing' },
+    ],
+    Research: [
+      { ru: 'JTBD Interviews', en: 'JTBD Interviews' },
+      { ru: 'Surveys', en: 'Surveys' },
+      { ru: 'Usability Testing', en: 'Usability Testing' },
+      { ru: 'Customer Discovery', en: 'Customer Discovery' },
+    ],
+    Tools: [
+      { ru: 'Figma', en: 'Figma' },
+      { ru: 'Jira', en: 'Jira' },
+      { ru: 'Confluence', en: 'Confluence' },
+      { ru: 'Miro', en: 'Miro' },
+      { ru: 'Notion', en: 'Notion' },
+      { ru: 'Linear', en: 'Linear' },
+    ],
   }
 
   let order = 0
   for (const [category, skills] of Object.entries(skillCategories)) {
     for (const skill of skills) {
-      const skillId = skill.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-')
+      const skillId = skill.en.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-')
       await prisma.skill.create({
         data: {
           id: skillId,
-          name: skill,
+          nameRu: skill.ru,
+          nameEn: skill.en,
           category,
           order: order++,
         },
@@ -185,8 +252,10 @@ async function main() {
   const achievements = [
     {
       id: 'accelerator-achievement',
-      title: 'Startup Accelerator Program',
-      description: 'Selected for a competitive startup accelerator program.',
+      titleRu: 'Программа стартап-акселератора',
+      titleEn: 'Startup Accelerator Program',
+      descriptionRu: 'Отобран в конкурентную программу стартап-акселератора.',
+      descriptionEn: 'Selected for a competitive startup accelerator program.',
       date: new Date('2024-01-01'),
       type: 'Accelerator',
       order: 0,
@@ -205,10 +274,10 @@ async function main() {
 
   // Create social links
   const socialLinks = [
-    { id: 'telegram', platform: 'telegram', url: 'https://t.me/username', order: 0 },
-    { id: 'github', platform: 'github', url: 'https://github.com/username', order: 1 },
-    { id: 'linkedin', platform: 'linkedin', url: 'https://linkedin.com/in/username', order: 2 },
-    { id: 'email', platform: 'email', url: 'mailto:hello@timofey.dev', order: 3 },
+    { id: 'telegram', platform: 'telegram', url: 'https://t.me/username', labelRu: 'Telegram', labelEn: 'Telegram', order: 0 },
+    { id: 'github', platform: 'github', url: 'https://github.com/username', labelRu: 'GitHub', labelEn: 'GitHub', order: 1 },
+    { id: 'linkedin', platform: 'linkedin', url: 'https://linkedin.com/in/username', labelRu: 'LinkedIn', labelEn: 'LinkedIn', order: 2 },
+    { id: 'email', platform: 'email', url: 'mailto:hello@timofey.dev', labelRu: 'Email', labelEn: 'Email', order: 3 },
   ]
 
   for (const link of socialLinks) {
