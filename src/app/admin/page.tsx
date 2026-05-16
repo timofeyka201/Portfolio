@@ -30,25 +30,19 @@ export default function AdminDashboard() {
   const [data, setData] = useState<AdminData | null>(null)
   const [loading, setLoading] = useState(true)
   const [activeTab, setActiveTab] = useState("profile")
-  const [adminLang, setAdminLang] = useState<"ru" | "en">("ru")
-  const [savingProfile, setSavingProfile] = useState(false)
-  const [profileSaved, setProfileSaved] = useState(false)
-  const [profileForm, setProfileForm] = useState({
-    nameRu: '',
-    nameEn: '',
-    roleRu: '',
-    roleEn: '',
-    positioningStatementRu: '',
-    positioningStatementEn: '',
-    bioRu: '',
-    bioEn: '',
-    philosophyRu: '',
-    philosophyEn: '',
-    currentFocusRu: '',
-    currentFocusEn: '',
-    interestsRu: '',
-    interestsEn: '',
-  })
+const [adminLang, setAdminLang] = useState<"ru" | "en">("ru")
+
+  const fetchData = async () => {
+    try {
+      const res = await fetch(`/api/admin/data?lang=${adminLang}`)
+      const json = await res.json()
+      setData(json)
+    } catch (error) {
+      console.error("Failed to fetch data:", error)
+    } finally {
+      setLoading(false)
+    }
+  }
 
   useEffect(() => {
     if (status === "unauthenticated") {
@@ -166,164 +160,6 @@ export default function AdminDashboard() {
           </nav>
 
           <main className="flex-1">
-            {activeTab === "profile" && data?.profile && (
-              <div className="space-y-6">
-                <div className="flex items-center justify-between">
-                  <h2 className="text-lg font-semibold">Profile Settings</h2>
-                  <LanguageToggle lang={adminLang} onChange={setAdminLang} />
-                </div>
-                <div className="grid gap-4">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm text-foreground-muted mb-1">Name (RU)</label>
-                      <input
-                        type="text"
-                        value={profileForm.nameRu}
-                        onChange={(e) => { setProfileForm({ ...profileForm, nameRu: e.target.value }); setProfileSaved(false) }}
-                        className="w-full px-4 py-2 bg-background-secondary border border-border rounded-lg"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm text-foreground-muted mb-1">Name (EN)</label>
-                      <input
-                        type="text"
-                        value={profileForm.nameEn}
-                        onChange={(e) => { setProfileForm({ ...profileForm, nameEn: e.target.value }); setProfileSaved(false) }}
-                        className="w-full px-4 py-2 bg-background-secondary border border-border rounded-lg"
-                      />
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm text-foreground-muted mb-1">Role (RU)</label>
-                      <input
-                        type="text"
-                        value={profileForm.roleRu}
-                        onChange={(e) => { setProfileForm({ ...profileForm, roleRu: e.target.value }); setProfileSaved(false) }}
-                        className="w-full px-4 py-2 bg-background-secondary border border-border rounded-lg"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm text-foreground-muted mb-1">Role (EN)</label>
-                      <input
-                        type="text"
-                        value={profileForm.roleEn}
-                        onChange={(e) => { setProfileForm({ ...profileForm, roleEn: e.target.value }); setProfileSaved(false) }}
-                        className="w-full px-4 py-2 bg-background-secondary border border-border rounded-lg"
-                      />
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm text-foreground-muted mb-1">Positioning Statement (RU)</label>
-                      <textarea
-                        value={profileForm.positioningStatementRu}
-                        onChange={(e) => { setProfileForm({ ...profileForm, positioningStatementRu: e.target.value }); setProfileSaved(false) }}
-                        rows={3}
-                        className="w-full px-4 py-2 bg-background-secondary border border-border rounded-lg"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm text-foreground-muted mb-1">Positioning Statement (EN)</label>
-                      <textarea
-                        value={profileForm.positioningStatementEn}
-                        onChange={(e) => { setProfileForm({ ...profileForm, positioningStatementEn: e.target.value }); setProfileSaved(false) }}
-                        rows={3}
-                        className="w-full px-4 py-2 bg-background-secondary border border-border rounded-lg"
-                      />
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm text-foreground-muted mb-1">Bio (RU)</label>
-                      <textarea
-                        value={profileForm.bioRu}
-                        onChange={(e) => { setProfileForm({ ...profileForm, bioRu: e.target.value }); setProfileSaved(false) }}
-                        rows={5}
-                        className="w-full px-4 py-2 bg-background-secondary border border-border rounded-lg"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm text-foreground-muted mb-1">Bio (EN)</label>
-                      <textarea
-                        value={profileForm.bioEn}
-                        onChange={(e) => { setProfileForm({ ...profileForm, bioEn: e.target.value }); setProfileSaved(false) }}
-                        rows={5}
-                        className="w-full px-4 py-2 bg-background-secondary border border-border rounded-lg"
-                      />
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm text-foreground-muted mb-1">Current Focus (RU)</label>
-                      <textarea
-                        value={profileForm.currentFocusRu}
-                        onChange={(e) => { setProfileForm({ ...profileForm, currentFocusRu: e.target.value }); setProfileSaved(false) }}
-                        rows={3}
-                        className="w-full px-4 py-2 bg-background-secondary border border-border rounded-lg"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm text-foreground-muted mb-1">Current Focus (EN)</label>
-                      <textarea
-                        value={profileForm.currentFocusEn}
-                        onChange={(e) => { setProfileForm({ ...profileForm, currentFocusEn: e.target.value }); setProfileSaved(false) }}
-                        rows={3}
-                        className="w-full px-4 py-2 bg-background-secondary border border-border rounded-lg"
-                      />
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm text-foreground-muted mb-1">Philosophy (RU)</label>
-                      <textarea
-                        value={profileForm.philosophyRu}
-                        onChange={(e) => { setProfileForm({ ...profileForm, philosophyRu: e.target.value }); setProfileSaved(false) }}
-                        rows={3}
-                        className="w-full px-4 py-2 bg-background-secondary border border-border rounded-lg"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm text-foreground-muted mb-1">Philosophy (EN)</label>
-                      <textarea
-                        value={profileForm.philosophyEn}
-                        onChange={(e) => { setProfileForm({ ...profileForm, philosophyEn: e.target.value }); setProfileSaved(false) }}
-                        rows={3}
-                        className="w-full px-4 py-2 bg-background-secondary border border-border rounded-lg"
-                      />
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm text-foreground-muted mb-1">Interests (RU)</label>
-                      <textarea
-                        value={profileForm.interestsRu}
-                        onChange={(e) => { setProfileForm({ ...profileForm, interestsRu: e.target.value }); setProfileSaved(false) }}
-                        rows={3}
-                        className="w-full px-4 py-2 bg-background-secondary border border-border rounded-lg"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm text-foreground-muted mb-1">Interests (EN)</label>
-                      <textarea
-                        value={profileForm.interestsEn}
-                        onChange={(e) => { setProfileForm({ ...profileForm, interestsEn: e.target.value }); setProfileSaved(false) }}
-                        rows={3}
-                        className="w-full px-4 py-2 bg-background-secondary border border-border rounded-lg"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <button 
-                  onClick={handleSaveProfile}
-                  disabled={savingProfile}
-                  className="px-4 py-2 bg-accent text-white rounded-lg font-medium hover:bg-accent/90 disabled:opacity-50"
-                >
-                  {savingProfile ? 'Saving...' : profileSaved ? 'Saved!' : 'Save Changes'}
-                </button>
-              </div>
-            )}
-
             {activeTab === "profile" && data?.profile && (
               <ProfileTab 
                 profile={data.profile} 
