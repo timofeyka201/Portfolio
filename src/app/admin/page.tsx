@@ -8,6 +8,9 @@ import { SkillsTab } from "@/components/admin/skills-tab"
 import { ProjectsTab } from "@/components/admin/projects-tab"
 import { ExperiencesTab } from "@/components/admin/experiences-tab"
 import { AchievementsTab } from "@/components/admin/achievements-tab"
+import { EducationTab } from "@/components/admin/education-tab"
+import { LanguagesTab } from "@/components/admin/languages-tab"
+import { ProfileTab } from "@/components/admin/profile-tab"
 import { LanguageToggle } from "@/components/admin/language-toggle"
 
 interface AdminData {
@@ -121,6 +124,8 @@ export default function AdminDashboard() {
 
   const tabs = [
     { id: "profile", label: "Profile" },
+    { id: "education", label: "Education" },
+    { id: "languages", label: "Languages" },
     { id: "experiences", label: "Experience" },
     { id: "projects", label: "Projects" },
     { id: "skills", label: "Skills" },
@@ -317,6 +322,22 @@ export default function AdminDashboard() {
                   {savingProfile ? 'Saving...' : profileSaved ? 'Saved!' : 'Save Changes'}
                 </button>
               </div>
+            )}
+
+            {activeTab === "profile" && data?.profile && (
+              <ProfileTab 
+                profile={data.profile} 
+                adminLang={adminLang}
+                onUpdate={fetchData} 
+              />
+            )}
+
+            {activeTab === "education" && (
+              <EducationTab education={data?.education || []} onUpdate={fetchData} />
+            )}
+
+            {activeTab === "languages" && (
+              <LanguagesTab languages={data?.languages || []} onUpdate={fetchData} />
             )}
 
             {activeTab === "experiences" && (
