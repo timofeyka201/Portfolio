@@ -5,11 +5,11 @@ import { useLang } from "@/components/lang-context"
 export default function SkillsClient({ skills }: { skills: any[] }) {
   const { t, lang } = useLang()
 
-  const skillsByCategory = skills.reduce((acc, skill) => {
+  const skillsByCategory = skills.reduce((acc: Record<string, any[]>, skill: any) => {
     if (!acc[skill.category]) acc[skill.category] = []
     acc[skill.category].push(skill)
     return acc
-  }, {} as Record<string, typeof skills>)
+  }, {} as Record<string, any[]>)
 
   const categories = Object.keys(skillsByCategory).sort()
 
