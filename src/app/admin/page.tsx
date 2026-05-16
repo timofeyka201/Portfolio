@@ -11,7 +11,6 @@ import { AchievementsTab } from "@/components/admin/achievements-tab"
 import { EducationTab } from "@/components/admin/education-tab"
 import { LanguagesTab } from "@/components/admin/languages-tab"
 import { ProfileTab } from "@/components/admin/profile-tab"
-import { LanguageToggle } from "@/components/admin/language-toggle"
 
 interface AdminData {
   profile: any
@@ -30,7 +29,7 @@ export default function AdminDashboard() {
   const [data, setData] = useState<AdminData | null>(null)
   const [loading, setLoading] = useState(true)
   const [activeTab, setActiveTab] = useState("profile")
-const [adminLang, setAdminLang] = useState<"ru" | "en">("ru")
+  const [adminLang, setAdminLang] = useState<"ru" | "en">("ru")
 
   const fetchData = async () => {
     try {
@@ -52,61 +51,11 @@ const [adminLang, setAdminLang] = useState<"ru" | "en">("ru")
     }
   }, [status, router])
 
-  const fetchData = async () => {
-    try {
-      const res = await fetch(`/api/admin/data?lang=${adminLang}`)
-      const json = await res.json()
-      setData(json)
-      if (json.profile) {
-        setProfileForm({
-          nameRu: json.profile.nameRu || '',
-          nameEn: json.profile.nameEn || '',
-          roleRu: json.profile.roleRu || '',
-          roleEn: json.profile.roleEn || '',
-          positioningStatementRu: json.profile.positioningStatementRu || '',
-          positioningStatementEn: json.profile.positioningStatementEn || '',
-          bioRu: json.profile.bioRu || '',
-          bioEn: json.profile.bioEn || '',
-          philosophyRu: json.profile.philosophyRu || '',
-          philosophyEn: json.profile.philosophyEn || '',
-          currentFocusRu: json.profile.currentFocusRu || '',
-          currentFocusEn: json.profile.currentFocusEn || '',
-          interestsRu: json.profile.interestsRu || '',
-          interestsEn: json.profile.interestsEn || '',
-        })
-      }
-    } catch (error) {
-      console.error("Failed to fetch data:", error)
-    } finally {
-      setLoading(false)
-    }
-  }
-
   useEffect(() => {
     if (status === "authenticated") {
       fetchData()
     }
   }, [adminLang])
-
-  const handleSaveProfile = async () => {
-    setSavingProfile(true)
-    setProfileSaved(false)
-    try {
-      const res = await fetch('/api/admin/profile', {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(profileForm),
-      })
-      if (res.ok) {
-        setProfileSaved(true)
-        fetchData()
-      }
-    } catch (error) {
-      console.error('Failed to save profile:', error)
-    } finally {
-      setSavingProfile(false)
-    }
-  }
 
   if (status === "loading" || loading) {
     return (
